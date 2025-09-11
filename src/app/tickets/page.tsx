@@ -1,11 +1,13 @@
 'use client'
 
+import { Heading } from "@/components/heading";
+
 const TicketPage=()=>{
 
     return(
-        <div>
-            <h1>Ticket Management</h1>
-        </div>
+        <>
+        <Heading title="Details" description="details of the tickets "/>
+        </>
     )
 }
 

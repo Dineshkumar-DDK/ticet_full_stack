@@ -26,8 +26,7 @@ export default function RootLayout({
         fixed top-0 left-0 right-0 z-20
         border-b bg-background/95 backdrop-blur
         supports-backdrop-blur:bg-background/60
-        '
-        >
+        '>
           <div>
             <Link href={Paths.homePath()}>Home</Link>
           </div>
