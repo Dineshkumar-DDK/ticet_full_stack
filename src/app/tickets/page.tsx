@@ -6,7 +6,7 @@ const TicketPage=()=>{
 
     return(
         <>
-        <Heading title="Details" description="details of the tickets "/>
+        <Heading title="Tickets" description="All Tickets at one place"/>
         </>
     )
 }
