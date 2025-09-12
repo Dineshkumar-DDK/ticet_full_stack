@@ -3,6 +3,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes fade-in-from-top{
+  from {
+    opacity :0;
+    transform: translateY(-16px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0);
+  }
+}
+
+@theme {
+  --animate-fade-in-from-top: fade-in-from-top 0.5s ease-out;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -120,3 +135,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+
