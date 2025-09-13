@@ -2,6 +2,7 @@ import { LucideKanban } from "lucide-react"
 import Link from "next/link"
 import { buttonVariants } from "./ui/button"
 import * as Paths from "@/app/paths"
+import { ThemeSwitcher } from "./theme/theme-switcher"
 const Header = () => {
    return <nav
         className='
@@ -11,7 +12,7 @@ const Header = () => {
         border-b bg-background/95 backdrop-blur
         supports-backdrop-blur:bg-background/60
         '>
-        <div>
+        <div className="flex items-center space-x-2">
             <Link href={Paths.homePath()}
                 className={buttonVariants({ variant: 'ghost' })}
             >
@@ -19,7 +20,8 @@ const Header = () => {
                 <h1 className="text-lg font-semibold ml-2">TicketBounty</h1>
             </Link>
         </div>
-        <div>
+        <div className="flex items-center space-x-2">
+            <ThemeSwitcher/>
             <Link href={Paths.ticketsPath()} className={buttonVariants({ variant: "default" })}>Tickets</Link>
         </div>
     </nav>
