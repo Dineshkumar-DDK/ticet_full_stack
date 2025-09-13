@@ -3,9 +3,10 @@ import { cloneElement } from "react";
 
 type PlaceHolderProps = {
     title: string;
-    icon?: React.ReactElement;
-    button?: React.ReactElement;
+    icon?: React.ReactElement<{ className?: string }>;
+    button?: React.ReactElement<{ className?: string }>;
 }
+
 
 const PlaceHolder = ({ title, icon = <LucideMessageSquareWarning />, button = <div/> }: PlaceHolderProps) => {
     return <div className="flex flex-col flex-1 items-center justify-center self-center space-y-2">
