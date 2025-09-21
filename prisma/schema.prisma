@@ -14,4 +14,11 @@ model Ticket {
     updatedAt DateTime @updatedAt
     title String
     content String @db.VarChar(1204)
+    status TicketStatus @default(OPEN)
+}
+
+enum TicketStatus{
+    OPEN
+    IN_PROGRESS
+    CLOSED
 }
