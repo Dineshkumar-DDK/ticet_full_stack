@@ -4,6 +4,7 @@ import Link from "next/link";
 import * as Path from "@/app/paths";
 import { Ticket } from "@/features/ticket/types";
 import { TicketItem } from "@/features/ticket/components/ticketItem";
+import { getTicket } from "@/features/ticket/queries/get-ticket";
 
 type TicketPageProps = {
     params: { ticketId: string };
@@ -16,8 +17,8 @@ const sampleTicket: Ticket[] = [{
     status: 'OPEN'
 }];
 
-const ticketPage = ({ params }: TicketPageProps) => {
-    const avlticket = sampleTicket.find(item=>item.id==params.ticketId)
+const ticketPage = async ({ params }: TicketPageProps) => {
+    const avlticket = await getTicket(params.ticketId)
     if (!avlticket) {
         return <PlaceHolder title="No Ticket Found" button={
             <Button variant='outline' asChild>
