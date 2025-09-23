@@ -7,9 +7,10 @@ import { LucideSquareArrowOutUpRight } from "lucide-react";
 import clsx from "clsx";
 // import { Ticket } from "@prisma/client";
 import { getTickets } from "../queries/get-tickets";
+import { getTicket } from "../queries/get-ticket";
 
 type TicketItemProps = {
-    ticket: Awaited<ReturnType<typeof getTickets>>[number],
+    ticket: Awaited<ReturnType<typeof getTickets>>[number] | Awaited<ReturnType<typeof getTicket>>,
     isDetail?: boolean
 }
 
