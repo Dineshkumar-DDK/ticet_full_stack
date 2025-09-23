@@ -8,6 +8,7 @@ import { LucideSquareArrowOutUpRight, LucideTrash } from "lucide-react";
 import clsx from "clsx";
 import { Ticket } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { deleteTicket } from "../actions/deleteTicket";
 
 type TicketItemProps = {
     ticket: Ticket,
@@ -24,12 +25,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     )
 
     const handleDelete = async()=>{
-        'use server'
-        await prisma.ticket.delete({
-            where:{
-                id:ticket.id
-            }
-        })
+        await deleteTicket(ticket.id)
     }
     const deleteButton = (
         <Button variant="outline" size="icon" onClick={handleDelete}>
