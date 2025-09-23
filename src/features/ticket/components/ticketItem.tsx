@@ -5,21 +5,14 @@ import { TICKET_ICONS } from "../constants";
 import { Button } from "@/components/ui/button";
 import { LucideSquareArrowOutUpRight } from "lucide-react";
 import clsx from "clsx";
-// import { Ticket } from "@prisma/client";
-import { getTickets } from "../queries/get-tickets";
-import { getTicket } from "../queries/get-ticket";
+import { Ticket } from "@prisma/client";
 
 type TicketItemProps = {
-    ticket: Awaited<ReturnType<typeof getTickets>>[number] | Awaited<ReturnType<typeof getTicket>>,
+    ticket: Ticket,
     isDetail?: boolean
 }
 
-
-
 const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
-    if(ticket==null){
-        return null
-    }
     const detailButton = (
         <Button variant="outline" size="icon" asChild>
             <Link href={Paths.ticketPath(ticket.id)} className='underline'>
