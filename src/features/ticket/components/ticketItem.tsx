@@ -14,8 +14,12 @@ type TicketItemProps = {
     isDetail?: boolean
 }
 
+
+
 const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
-    console.log(isDetail,"isDetails...")
+    if(ticket==null){
+        return null
+    }
     const detailButton = (
         <Button variant="outline" size="icon" asChild>
             <Link href={Paths.ticketPath(ticket.id)} className='underline'>
