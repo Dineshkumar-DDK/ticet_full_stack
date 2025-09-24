@@ -7,7 +7,7 @@ export default function HomePage() {
     <div className='flex flex-col flex-1 space-y-8'>
        <Heading title="Home" description="Your home place to start"/>
        <div className="flex flex-col align-center flex-1">
-         <Link href={Path.ticketsPath()} className="underline">View Tickets</Link>
+         <Link prefetch href={Path.ticketsPath()} className="underline">View Tickets</Link>
        </div>
     </div>
   );
