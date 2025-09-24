@@ -3,8 +3,8 @@ export const getTickets=async()=>{
     return await prisma.ticket.findMany(
         {
             orderBy:{
-                createAt:"desc";
-            }
+                createAt:"desc",
+            },
         }
     );
 }
