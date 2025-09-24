@@ -6,12 +6,11 @@ const TicketList = async() => {
     const sampleTicket = await getTickets()
 
     return (
-    <div className='flex flex-col flex-1 space-y-8'>
-        <Heading title="Tickets" description="All Tickets at one place" />
+    
         <div className="flex flex-col flex-1 items-center animate-fade-in-from-top space-y-6">
             {sampleTicket.map((ticket) => <TicketItem key={ticket.id} ticket={ticket} />)}
         </div>
-    </div>
+   
     )
 }
 export { TicketList }

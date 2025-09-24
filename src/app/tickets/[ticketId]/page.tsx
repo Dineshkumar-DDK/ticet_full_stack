@@ -4,6 +4,8 @@ import Link from "next/link";
 import * as Path from "@/app/paths";
 import { TicketItem } from "@/features/ticket/components/ticketItem";
 import { getTicket } from "@/features/ticket/queries/get-ticket";
+import { Suspense } from "react";
+import { Spinner } from "@/components/spinner";
 
 type TicketPageProps = {
     params: { ticketId: string };
@@ -24,7 +26,9 @@ const ticketPage = async ({ params }: TicketPageProps) => {
 
     return (
         <div className='flex justify-center animate-fade-in-from-top'>
-            <TicketItem key={avlticket.id} ticket={avlticket} isDetail />
+            <Suspense fallback={<Spinner/>}>
+                <TicketItem key={avlticket.id} ticket={avlticket} isDetail />
+            </Suspense>
         </div>
     );
 
