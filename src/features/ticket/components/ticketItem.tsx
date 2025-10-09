@@ -34,7 +34,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     )
 
     return (
-        <div className={clsx('flex space-x-1 w-full', { 'max-w-[420px]': !isDetail, 'max-w-[580]': !isDetail })}>
+        <div className={clsx('flex space-x-1 w-full', { 'max-w-[420px]': !isDetail, 'max-w-[580px]': !isDetail })}>
             <Card className='w-full'>
                 <CardHeader>
                     <CardTitle className="flex gap-x-2">
