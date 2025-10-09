@@ -3,12 +3,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import React from 'react'
+import { createTicket } from '../actions/createTicket'
 
 const TicketCreateForm = () => {
-  const createTicket = async(formData:FormData)=>{
-    'use server'
-    console.log(formData.get('title'))
-  }
+
   return (
     <form action={createTicket} className='flex flex-col space-y-2'>
         <Label htmlFor='title'>Title</Label>
