@@ -7,7 +7,7 @@ import { getTicket } from "@/features/ticket/queries/get-ticket";
 import { Suspense } from "react";
 import { Spinner } from "@/components/spinner";
 
-type TicketPageProps = {
+export type TicketPageProps = {
     params: { ticketId: string };
 }
 

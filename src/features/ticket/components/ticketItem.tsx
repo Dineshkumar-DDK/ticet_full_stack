@@ -4,7 +4,7 @@ import Link from "next/link";
 import * as Paths from "@/app/paths";
 import { TICKET_ICONS } from "../constants";
 import { Button } from "@/components/ui/button";
-import { LucideSquareArrowOutUpRight, LucideTrash } from "lucide-react";
+import { LucidePencil, LucideSquareArrowOutUpRight, LucideTrash } from "lucide-react";
 import clsx from "clsx";
 import { Ticket } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
@@ -26,11 +26,19 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
 
 
     const deleteButton = (
-        <form action={deleteTicket.bind(null,ticket.id)}>
+        <form action={deleteTicket.bind(null, ticket.id)}>
             <Button variant="outline" size="icon" >
                 <LucideTrash className="h-4 w-4" />
             </Button>
         </form>
+    )
+
+    const editButton = (
+        <Button variant='outline' size='icon' asChild>
+            <Link href={Paths.editTicketPath(ticket.id)} className="underline">
+                <LucidePencil className="h-4 w-4" />
+            </Link>
+        </Button>
     )
 
     return (
@@ -52,7 +60,16 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
                 </CardFooter>
             </Card>
             <div className="flex flex-col space-y-1">
-                {isDetail ? deleteButton : detailButton}
+                {isDetail ?
+                    <>
+                        {editButton}
+                        {deleteButton}
+                    </> :
+                    <>
+                        {detailButton}
+                        {editButton}
+                    </>
+                }
             </div>
 
         </div>
