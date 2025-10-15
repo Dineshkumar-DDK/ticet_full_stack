@@ -3,6 +3,8 @@ import React from 'react'
 import { TicketPageProps } from '../../[ticketId]/page'
 import {notFound} from 'next/navigation';
 import { getTicket } from '@/features/ticket/queries/get-ticket';
+import { Ticket } from 'lucide-react';
+import TicketUpdateForm from '@/features/ticket/components/ticketUpdateForm';
 
 const EditPage = async({params}:TicketPageProps) => {
   const id = await params?.ticketId;
@@ -16,7 +18,7 @@ const EditPage = async({params}:TicketPageProps) => {
         <CardCompact 
          title = "Edit Ticket"
          description="Edit your ticket details"
-         content = {<>Edit ticket</>}
+         content = {<TicketUpdateForm />}
          className="w-full max-w-[420px] animate-fade-in-from-top"
          footer={null}
         />
