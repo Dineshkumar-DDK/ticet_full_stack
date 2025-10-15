@@ -14,7 +14,8 @@ type TicketPageProps = {
 
 
 const ticketPage = async ({ params }: TicketPageProps) => {
-    const avlticket = await getTicket(params.ticketId)
+    const id = await params;
+    const avlticket = await getTicket(id?.ticketId)
     if (!avlticket) {
         return <PlaceHolder title="No Ticket Found" button={
             <Button variant='outline' asChild>
