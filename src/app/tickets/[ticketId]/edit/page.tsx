@@ -18,7 +18,7 @@ const EditPage = async({params}:TicketPageProps) => {
         <CardCompact 
          title = "Edit Ticket"
          description="Edit your ticket details"
-         content = {<TicketUpdateForm />}
+         content = {<TicketUpdateForm ticket={ticket} />}
          className="w-full max-w-[420px] animate-fade-in-from-top"
          footer={null}
         />
