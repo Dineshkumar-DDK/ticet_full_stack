@@ -3,7 +3,6 @@ import { Heading } from "@/components/heading";
 import { PlaceHolder } from "@/components/placeholder";
 import { Spinner } from "@/components/spinner";
 import { CardCompact } from "@/features/ticket/components/cardCompact";
-import TicketCreateForm from "@/features/ticket/components/ticketCreateForm";
 import { TicketList } from "@/features/ticket/components/ticketList";
 import TicketUpsertForm from "@/features/ticket/components/ticketUpsertForm";
 import { Suspense } from "react";

@@ -3,8 +3,6 @@ import React from 'react'
 import { TicketPageProps } from '../../[ticketId]/page'
 import {notFound} from 'next/navigation';
 import { getTicket } from '@/features/ticket/queries/get-ticket';
-import { Ticket } from 'lucide-react';
-import TicketUpdateForm from '@/features/ticket/components/ticketUpdateForm';
 import TicketUpsertForm from '@/features/ticket/components/ticketUpsertForm';
 
 const EditPage = async({params}:TicketPageProps) => {
