@@ -10,10 +10,9 @@ type TicketUpdateFormProps = {
     ticket:Ticket
 }
 const TicketUpdateForm = ({ticket}:TicketUpdateFormProps) => {
-
   return (
-    <form action={updateTicket} className='flex flex-col space-y-2'>
-        <Input type='hidden' name='id' id='id' defaultValue={ticket.id} />
+    <form action={updateTicket.bind(this,ticket.id)} className='flex flex-col space-y-2'>
+        {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
         <Label htmlFor='title'>Title</Label>
         <Input type='text' id='title' name='title' defaultValue={ticket.title} />
         <Label htmlFor='content'>Content</Label>
