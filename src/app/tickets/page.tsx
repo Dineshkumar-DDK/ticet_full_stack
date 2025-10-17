@@ -19,12 +19,15 @@ const TicketsPage = async() => {
                 footer = {null}
                 className= "w-full min-w-[420px] max-w-[575px] self-center"
             />
-            <Suspense fallback={<Spinner />}>
+            {/* <Suspense fallback={<Spinner />}> - the suspense is violating the progressive enhancement principle
+             * as this creates spinner to appear when js disable and run in production mode
+             * so commented it 
+            */} 
             <ErrorBoundary
             fallback={<PlaceHolder title="Error loading tickets" />}>
                 <TicketList />
             </ErrorBoundary>
-            </Suspense>
+            {/* </Suspense> */}
         </div>
     )
 }
