@@ -5,6 +5,7 @@ import { Spinner } from "@/components/spinner";
 import { CardCompact } from "@/features/ticket/components/cardCompact";
 import TicketCreateForm from "@/features/ticket/components/ticketCreateForm";
 import { TicketList } from "@/features/ticket/components/ticketList";
+import TicketUpsertForm from "@/features/ticket/components/ticketUpsertForm";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -15,7 +16,7 @@ const TicketsPage = async() => {
             <CardCompact
                 title = "Create Ticket"
                 description = "New ticket will be created"
-                content = {<TicketCreateForm />}
+                content = {<TicketUpsertForm />}
                 footer = {null}
                 className= "w-full min-w-[420px] max-w-[575px] self-center"
             />
