@@ -11,14 +11,14 @@ type TicketUpsertFormProps = {
     ticket?:Ticket
 }
 const TicketUpsertForm = ({ticket}:TicketUpsertFormProps) => {
-  const [actionState,action]=useActionState(upsertTicket.bind(this,ticket?.id),{message:""})
+  const [actionState,action]=useActionState(upsertTicket.bind(this,ticket?.id),{message:"",fieldErrors:{}})
   return (
     <form action={action} className='flex flex-col space-y-2'>
         {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
         <Label htmlFor='title'>Title</Label>
-        <Input type='text' id='title' name='title' defaultValue={actionState.payload?.get('title') ?? ticket?.title} />
+        <Input type='text' id='title' name='title' defaultValue={actionState.payload?.get('title') as string?? ticket?.title} />
         <Label htmlFor='content'>Content</Label>
-        <Textarea id='content' name='content' defaultValue={actionState.payload?.get('content') ?? ticket?.content} />
+        <Textarea id='content' name='content' defaultValue={actionState.payload?.get('content') as string ?? ticket?.content} />
         <SubmitButton label = {ticket?.id ? "Update Ticket" : "Create Ticket "} />  
         {actionState.message}
     </form>

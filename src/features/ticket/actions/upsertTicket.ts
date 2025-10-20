@@ -29,5 +29,5 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
     revalidatePath(Paths.ticketsPath());
     if (id) redirect(Paths.ticketsPath());
 
-    return { message: "successful" }
+    return { message: "successful",fieldErrors:{} }
 }
