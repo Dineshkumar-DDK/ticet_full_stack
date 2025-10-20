@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea'
 import React, { useActionState } from 'react'
 import { Ticket } from '@prisma/client'
 import { upsertTicket } from '../actions/upsertTicket'
-import SubmitButton from '@/components/submitButton'
+import SubmitButton from '@/components/form/submitButton'
 
 type TicketUpsertFormProps = {
     ticket?:Ticket
