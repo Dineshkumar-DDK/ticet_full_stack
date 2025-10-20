@@ -17,8 +17,10 @@ const TicketUpsertForm = ({ticket}:TicketUpsertFormProps) => {
         {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
         <Label htmlFor='title'>Title</Label>
         <Input type='text' id='title' name='title' defaultValue={actionState.payload?.get('title') as string?? ticket?.title} />
+        <span>{actionState?.fieldErrors?.title?.errors[0]}</span>
         <Label htmlFor='content'>Content</Label>
         <Textarea id='content' name='content' defaultValue={actionState.payload?.get('content') as string ?? ticket?.content} />
+        <span>{actionState?.fieldErrors?.content?.errors[0]}</span>
         <SubmitButton label = {ticket?.id ? "Update Ticket" : "Create Ticket "} />  
         {actionState.message}
     </form>
