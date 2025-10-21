@@ -1,6 +1,6 @@
 'use server'
 import * as Paths from '@/app/paths'
-import { ActionState, formErrorToActionState } from '@/components/form/utils/toActionState'
+import { ActionState, formErrorToActionState, toActionState } from '@/components/form/utils/toActionState'
 import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -29,5 +29,5 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
     revalidatePath(Paths.ticketsPath());
     if (id) redirect(Paths.ticketsPath());
 
-    return { message: "successful",fieldErrors:{} }
+    return toActionState('SUCCESS','Ticket created successfully')
 }
