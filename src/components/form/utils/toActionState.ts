@@ -1,40 +1,48 @@
 import { ZodError } from "zod"
 import z from 'zod'
-export const EMPTY_ACTION_STATE:ActionState ={
- message:"",
- fieldErrors:{}
+
+export type ActionState = { message: string, status?: 'SUCCESS' | 'ERROR', payload?: FormData, fieldErrors: Record<string, string[] | undefined>, timestamp: number }
+
+export const EMPTY_ACTION_STATE: ActionState = {
+  message: "",
+  fieldErrors: {},
+  timestamp: Date.now()
 }
-export type ActionState= { message: string,status?:'SUCCESS'|'ERROR',payload?:FormData,fieldErrors:Record<string , string[] | undefined> }
-export const formErrorToActionState = (error:unknown,formData:FormData):ActionState=>{
-  if(error instanceof ZodError){
+
+export const formErrorToActionState = (error: unknown, formData: FormData): ActionState => {
+  if (error instanceof ZodError) {
     // console.log(z.treeifyError(error)?.properties)
     return {
-        message:"",
-        status:'ERROR',
-        payload:formData,
-        fieldErrors:z.treeifyError(error)?.properties
+      message: "",
+      status: 'ERROR',
+      payload: formData,
+      fieldErrors: z.treeifyError(error)?.properties,
+      timestamp: Date.now()
     }
   }
-  else if(error instanceof Error){
+  else if (error instanceof Error) {
     return {
-         
-        message:error.message,
-        status:'ERROR',
-        payload:formData,
-        fieldErrors:{}
+
+      message: error.message,
+      status: 'ERROR',
+      payload: formData,
+      fieldErrors: {},
+      timestamp: Date.now()
     }
   }
-    return {
+  return {
     message: " Something went wrong ",
-    status:'ERROR',
+    status: 'ERROR',
     payload: formData,
-    fieldErrors:{}
+    fieldErrors: {},
+    timestamp: Date.now()
   }
 }
-export const toActionState =(status:ActionState['status'],message:string):ActionState=>{
+export const toActionState = (status: ActionState['status'], message: string): ActionState => {
   return {
     message,
     status,
-    fieldErrors:{}
+    fieldErrors: {},
+    timestamp: Date.now()
   }
 }
