@@ -1,9 +1,12 @@
 import { useEffect } from "react"
 import { ActionState } from "../utils/toActionState"
 
+type OnArgs ={
+    actionState:ActionState
+}
 type useActionFeedBackOptions={
- onSuccess?:({actionState}:{actionState:ActionState})=>void;
- onFailure?:({actionState}:{actionState:ActionState})=>void;
+ onSuccess?:(onArgs:OnArgs)=>void;
+ onFailure?:(onArgs:OnArgs)=>void;
 }
 
 export const useActionFeedback=(actionState:ActionState,options:useActionFeedBackOptions)=>{
