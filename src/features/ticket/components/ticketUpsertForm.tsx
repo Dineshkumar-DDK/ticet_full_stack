@@ -8,12 +8,14 @@ import { upsertTicket } from '../actions/upsertTicket'
 import SubmitButton from '@/components/form/submitButton'
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/toActionState'
 import FieldError from '@/components/form/fieldError'
+import { useActionFeedback } from '@/components/form/hooks/useActionFeedback'
 
 type TicketUpsertFormProps = {
   ticket?: Ticket
 }
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(upsertTicket.bind(this, ticket?.id), EMPTY_ACTION_STATE)
+  useActionFeedback(actionState);
   return (
     <form action={action} className='flex flex-col space-y-2'>
       {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
