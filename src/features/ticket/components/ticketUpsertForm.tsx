@@ -15,7 +15,14 @@ type TicketUpsertFormProps = {
 }
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(upsertTicket.bind(this, ticket?.id), EMPTY_ACTION_STATE)
-  useActionFeedback(actionState);
+  useActionFeedback(actionState,{
+    onSuccess:({actionState})=>{
+      console.log(actionState.message);
+    },
+    onFailure:({actionState})=>{
+      console.log(actionState.message);
+    }
+  });
   return (
     <form action={action} className='flex flex-col space-y-2'>
       {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
