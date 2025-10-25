@@ -33,7 +33,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
       <Textarea id='content' name='content' defaultValue={actionState.payload?.get('content') as string ?? ticket?.content} />
       <FieldError actionState={actionState} name='content' />
       <SubmitButton label={ticket?.id ? "Update Ticket" : "Create Ticket "} />
-      {actionState.message}
+      
     </form>
   )
 }
