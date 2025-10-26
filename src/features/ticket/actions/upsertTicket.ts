@@ -1,4 +1,5 @@
 'use server'
+import { setCookieByKey } from '@/action/cookieUtils'
 import * as Paths from '@/app/paths'
 import { ActionState, formErrorToActionState, toActionState } from '@/components/form/utils/toActionState'
 import { prisma } from '@/lib/prisma'
@@ -15,19 +16,19 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
         })
         await prisma.ticket.upsert({
             where: {
-                id: id || "" 
+                id: id || ""
             },
             update: data,
             create: data
         })
     }
     catch (error) {
-        return formErrorToActionState(error,formData);
+        return formErrorToActionState(error, formData);
     }
 
-
+    setCookieByKey('toast', "Ticket Updated Successfully")
     revalidatePath(Paths.ticketsPath());
     if (id) redirect(Paths.ticketsPath());
 
-    return toActionState('SUCCESS','Ticket created successfully')
+    return toActionState('SUCCESS', 'Ticket created successfully')
 }
