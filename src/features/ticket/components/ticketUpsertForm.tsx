@@ -9,18 +9,21 @@ import SubmitButton from '@/components/form/submitButton'
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/toActionState'
 import FieldError from '@/components/form/fieldError'
 import { useActionFeedback } from '@/components/form/hooks/useActionFeedback'
+import { toast } from 'sonner'
 
 type TicketUpsertFormProps = {
   ticket?: Ticket
 }
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(upsertTicket.bind(this, ticket?.id), EMPTY_ACTION_STATE)
-  useActionFeedback(actionState,{
-    onSuccess:({actionState})=>{
-      console.log(actionState.message);
+  useActionFeedback(actionState, {
+
+    onSuccess: ({ actionState }) => {
+      if (actionState.message) { toast.success(actionState?.message) }
     },
-    onFailure:({actionState})=>{
-      console.log(actionState.message);
+    onFailure: ({ actionState }) => {
+      if (actionState.message) { 
+        toast.error(actionState?.message) }
     }
   });
   return (
@@ -33,7 +36,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
       <Textarea id='content' name='content' defaultValue={actionState.payload?.get('content') as string ?? ticket?.content} />
       <FieldError actionState={actionState} name='content' />
       <SubmitButton label={ticket?.id ? "Update Ticket" : "Create Ticket "} />
-      
+
     </form>
   )
 }
