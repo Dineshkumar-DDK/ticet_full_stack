@@ -9,6 +9,7 @@ export const setCookieByKey = async (key: string, value: string) => {
 
 export const getCookieByKey = async (key:string)=>{
   const cookieStore =await cookies();
+  console.log(cookieStore);
   const data = cookieStore?.get(key);
   if(!data) return null;
   return data?.value;

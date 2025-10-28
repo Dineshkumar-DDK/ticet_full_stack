@@ -26,7 +26,7 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
         return formErrorToActionState(error, formData);
     }
 
-    setCookieByKey('toast', "Ticket Updated Successfully")
+    await setCookieByKey('toast', "Ticket Updated Successfully")
     revalidatePath(Paths.ticketsPath());
     if (id) redirect(Paths.ticketsPath());
 

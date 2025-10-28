@@ -6,6 +6,7 @@ import { TicketItem } from "@/features/ticket/components/ticketItem";
 import { getTicket } from "@/features/ticket/queries/get-ticket";
 import { Suspense } from "react";
 import { Spinner } from "@/components/spinner";
+import { RedirectToast } from "@/components/redirectToast";
 
 export type TicketPageProps = {
     params: { ticketId: string };
@@ -26,11 +27,14 @@ const ticketPage = async ({ params }: TicketPageProps) => {
     }
 
     return (
-        <div className='flex justify-center animate-fade-in-from-top'>
-            <Suspense fallback={<Spinner/>}>
-                <TicketItem key={avlticket.id} ticket={avlticket} isDetail />
-            </Suspense>
-        </div>
+        <>
+            <div className='flex justify-center animate-fade-in-from-top'>
+                <Suspense fallback={<Spinner />}>
+                    <TicketItem key={avlticket.id} ticket={avlticket} isDetail />
+                </Suspense>
+            </div>
+            <RedirectToast />
+        </>
     );
 
 }
