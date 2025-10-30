@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { RedirectToast } from "@/components/redirectToast";
+// import { RedirectToast } from "@/components/redirectToast";
 
 export const metadata: Metadata = {
   title: "Ticket management",
@@ -25,7 +25,7 @@ export default function RootLayout({
           </main>
           <Toaster expand />
         </ThemeProvider>
-        <RedirectToast />
+        {/* <RedirectToast /> */}
 
       </body>
     </html>
