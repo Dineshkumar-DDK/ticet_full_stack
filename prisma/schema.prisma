@@ -15,8 +15,8 @@ model Ticket {
     title String
     content String @db.VarChar(1204)
     status TicketStatus @default(OPEN)
-    deadline 
-    bounty
+    deadline String
+    bounty Int
 }
 
 enum TicketStatus{
