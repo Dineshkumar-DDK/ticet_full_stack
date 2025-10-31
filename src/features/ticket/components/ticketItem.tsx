@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { Ticket } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { deleteTicket } from "../actions/deleteTicket";
+import { toRupeeFromPaise } from "@/utils/currency";
 
 type TicketItemProps = {
     ticket: Ticket,
@@ -54,9 +55,13 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
                     <span className={clsx("whitespace-break-spaces ", { 'line-clamp-3': !isDetail })}>
                         {ticket.content}
                     </span>
+
                 </CardContent>
                 <CardFooter>
-
+                    <div className='flex justify-between space-x-8 text-sm'>
+                        <span>Deadline: {ticket.deadline}</span>
+                        <span>Bounty: {toRupeeFromPaise(ticket.bounty)}</span>
+                    </div>
                 </CardFooter>
             </Card>
             <div className="flex flex-col space-y-1">

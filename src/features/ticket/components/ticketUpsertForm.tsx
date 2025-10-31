@@ -9,15 +9,16 @@ import SubmitButton from '@/components/form/submitButton'
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/toActionState'
 import FieldError from '@/components/form/fieldError'
 import Form from '@/components/form/form'
+import { toRupeeFromPaise } from '@/utils/currency'
 
 type TicketUpsertFormProps = {
   ticket?: Ticket
 }
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(upsertTicket.bind(this, ticket?.id), EMPTY_ACTION_STATE)
- 
+
   return (
-    <Form action={action} actionState={actionState}>
+    <Form action={action} actionState={actionState} >
       {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
       <Label htmlFor='title'>Title</Label>
       <Input type='text' id='title' name='title' defaultValue={actionState.payload?.get('title') as string ?? ticket?.title} />
@@ -25,6 +26,26 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
       <Label htmlFor='content'>Content</Label>
       <Textarea id='content' name='content' defaultValue={actionState.payload?.get('content') as string ?? ticket?.content} />
       <FieldError actionState={actionState} name='content' />
+      <div className="flex gap-x-2 space-y-2 mb-1">
+        <div className='w-1/2 flex flex-col space-y-2'>
+          <Label htmlFor='deadline'>Deadline</Label>
+          <Input
+            id='deadline'
+            name='deadline'
+            type='date'
+            defaultValue={(actionState.payload?.get("deadline") as string) ?? ticket?.deadline}
+          />
+        </div>
+        <div className='w-1/2 flex flex-col space-y-2'>
+          <Label htmlFor="bounty">Bounty</Label>
+          <Input
+            type="number"
+            id="bounty"
+            name="bounty"
+            defaultValue={(actionState.payload?.get('bounty') as string) ?? (ticket?.bounty ? toRupeeFromPaise(ticket?.bounty) : "")}
+          />
+        </div>
+      </div>
       <SubmitButton label={ticket?.id ? "Update Ticket" : "Create Ticket "} />
     </Form>
   )
