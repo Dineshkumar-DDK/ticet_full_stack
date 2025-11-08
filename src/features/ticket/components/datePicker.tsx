@@ -38,6 +38,7 @@ const DatePicker =({id,name,defaultValue}:DatePickerProps)=>{
         >
           <CalendarIcon />
           {formattedDate}
+          <input type='hidden' name={name} value={formattedDate} />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
