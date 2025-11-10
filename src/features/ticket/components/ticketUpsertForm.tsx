@@ -2,7 +2,7 @@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import React, { useActionState } from 'react'
+import React, { useActionState, useRef } from 'react'
 import { Ticket } from '@prisma/client'
 import { upsertTicket } from '../actions/upsertTicket'
 import SubmitButton from '@/components/form/submitButton'
@@ -10,16 +10,19 @@ import { EMPTY_ACTION_STATE } from '@/components/form/utils/toActionState'
 import FieldError from '@/components/form/fieldError'
 import Form from '@/components/form/form'
 import { toRupeeFromPaise } from '@/utils/currency'
-import { DatePicker } from './datePicker'
+import { DatePicker, ImperativeHandleRefProps } from './datePicker'
 
 type TicketUpsertFormProps = {
   ticket?: Ticket
 }
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(upsertTicket.bind(this, ticket?.id), EMPTY_ACTION_STATE)
-
+  const imperativeHandleRef= useRef<ImperativeHandleRefProps>(null)
+  const handleSuccess=()=>{
+    imperativeHandleRef?.current?.reset();
+  }
   return (
-    <Form action={action} actionState={actionState} >
+    <Form action={action} actionState={actionState} onSuccess={handleSuccess}>
       {/* <Input type='hidden' name='id' id='id' defaultValue={ticket.id} /> */}
       <Label htmlFor='title'>Title</Label>
       <Input type='text' id='title' name='title' defaultValue={actionState.payload?.get('title') as string ?? ticket?.title} />
@@ -31,10 +34,11 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
         <div className='w-1/2 flex flex-col space-y-2'>
           <Label htmlFor='deadline'>Deadline</Label>
           <DatePicker
-            key={actionState?.timestamp}
+            // key={actionState?.timestamp}
             id='deadline'
             name='deadline'
             defaultValue={(actionState.payload?.get("deadline") as string) ?? ticket?.deadline}
+            imperativeHandleRef={imperativeHandleRef}
           />
           <FieldError actionState={actionState} name='deadline' />
         </div>
