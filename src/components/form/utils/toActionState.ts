@@ -13,7 +13,7 @@ type treeFiedError={
   properties?: Record<string, { errors: string[] }>;
 }
 
-export const formErrorToActionState = (error: unknown, formData: FormData): ActionState => {
+export const formErrorToActionState = (error: unknown, formData?: FormData): ActionState => {
   if (error instanceof ZodError) {
     const treeFiedErr =z.treeifyError(error) as treeFiedError;
     // console.log(z.treeifyError(error)?.properties)
