@@ -12,16 +12,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { Button } from '@/components/ui/button';
 
 type ConfirmDialogueProps = {
   title?: string;
   description?: string;
   trigger: React.ReactElement;
-  action: () => Promise<ActionState>;
+  action: () =>Promise<void>;
 }
 const ConfirmationDialogue = ({
   title = "Are you absolutely sure?",
-  description = "This action cannot be undone. This will permanently delete the item.",
+  description = "This action cannot be undone. Make sure to understand the consequences. ",
   trigger, action }: ConfirmDialogueProps) => {
   return (
     <AlertDialog>
@@ -35,7 +36,11 @@ const ConfirmationDialogue = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction asChild>
+            <form action={action}>
+              <Button type='submit'>Confirm</Button>
+            </form>
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
