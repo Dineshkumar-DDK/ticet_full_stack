@@ -11,6 +11,8 @@ import { prisma } from "@/lib/prisma";
 import { deleteTicket } from "../actions/deleteTicket";
 import { toRupeeFromPaise } from "@/utils/currency";
 import TicketMoreMenu from "./ticketMoreMenu";
+import ConfimationDialogue from './confirmationDialog'
+import ConfirmationDialogue from "./confirmationDialog";
 
 type TicketItemProps = {
     ticket: Ticket,
@@ -27,13 +29,14 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     )
 
 
-    const deleteButton = (
-        <form action={deleteTicket.bind(null, ticket.id)}>
-            <Button variant="outline" size="icon" >
-                <LucideTrash className="h-4 w-4" />
-            </Button>
-        </form>
-    )
+   
+
+    const deleteButton =
+        < ConfirmationDialogue
+            trigger={<Button variant='outline' size='icon'><LucideTrash className='h-4 w-4' /> </Button>}
+            action={deleteTicket.bind(null, ticket.id)}
+        />
+
 
     const editButton = (
         <Button variant='outline' size='icon' asChild>
@@ -44,12 +47,12 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     )
 
     const moreMenu = <TicketMoreMenu
-      ticket={ticket}
-      trigger={
-        <Button variant='outline' size='icon'>
-            <LucideMoreVertical className="h-4 w-4"/>
-        </Button >
-      }
+        ticket={ticket}
+        trigger={
+            <Button variant='outline' size='icon'>
+                <LucideMoreVertical className="h-4 w-4" />
+            </Button >
+        }
     />
 
     return (
