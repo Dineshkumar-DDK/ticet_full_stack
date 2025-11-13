@@ -31,10 +31,13 @@ const useConfirmationDialogue = ({
   description = "This action cannot be undone. Make sure to understand the consequences. ",
   trigger, action }: ConfirmDialogueProps) => {
   const [isOpen,setIsOpen] =useState(false);
-  
+
   const deleteButton = cloneElement(trigger as ClickableElement,{onClick:()=>setIsOpen((prev)=>!prev)})
   
   const [actionState,formAction] = useActionState(action,EMPTY_ACTION_STATE)
+  const handleSuccess =()=>{
+    setIsOpen(false);
+  }
   
   const deleteDialogue = <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
     <AlertDialogContent>
@@ -47,7 +50,7 @@ const useConfirmationDialogue = ({
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
         <AlertDialogAction asChild>
-          <Form action={formAction} actionState={actionState}>
+          <Form action={formAction} actionState={actionState} onSuccess={handleSuccess}>
              <SubmitButton label = "Confirm"/>
           </Form>
         </AlertDialogAction>
