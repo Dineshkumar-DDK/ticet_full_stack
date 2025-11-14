@@ -1,4 +1,4 @@
-import { ActionState } from '@/components/form/utils/toActionState';
+import { ActionState, EMPTY_ACTION_STATE } from '@/components/form/utils/toActionState';
 import React, { cloneElement, useState,useActionState } from 'react'
 
 import {
@@ -15,13 +15,12 @@ import {
 import { Button } from '@/components/ui/button';
 import SubmitButton from '@/components/form/submitButton';
 import Form from '@/components/form/form';
-import { EMPTY_ACTION_STATE } from '@/components/form/utils/toActionState'
 
 type ConfirmDialogueProps = {
   title?: string;
   description?: string;
   trigger: React.ReactElement;
-  action: () => Promise<void>;
+  action: () => Promise<ActionState>;
 }
 type ClickableElement = React.ReactElement<
   React.HTMLAttributes<HTMLElement>
