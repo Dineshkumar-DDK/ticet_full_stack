@@ -8,10 +8,10 @@ import { ActionState, formErrorToActionState, toActionState } from '@/components
 import { z } from 'zod';
 
 const signUpSchema = z.object({
-    username: z.string().min(1).max(191).refine((value) => !value.includes(" "), "User name must not contain empty characters"),
+    userName: z.string().min(1).max(191).refine((value) => !value.includes(" "), "User name must not contain empty characters"),
     email: z.email().min(1, { message: 'required' }).max(191),
-    password: z.string().min(6).max(191),
-    confirmPassword: z.string().min(6).max(191)
+    password: z.string().min(6,{message:"should be atleast 6 characters"}).max(191),
+    confirmPassword: z.string().min(6,{message:"should be atleast 6 characters"}).max(191)
 
 }).superRefine(({ password, confirmPassword }, ctx) => {
     if (password !== confirmPassword) {
@@ -28,7 +28,7 @@ const signUpSchema = z.object({
 //1
 export const signUp = async (_actionState:ActionState,formData: FormData) => {
     try {
-        const { username, email, password } = signUpSchema.parse(
+        const { userName, email, password } = signUpSchema.parse(
             Object.fromEntries(formData)
         )
         // todo  store in db
