@@ -2,10 +2,11 @@
 import SubmitButton from '@/components/form/submitButton'
 import { Input } from '@/components/ui/input'
 import React from 'react'
+import { signUp } from '../actions/signUp'
 
 const SignUpForm = () => {
   return (
-    <form >
+    <form action={signUp}>
         <Input name='userName' placeholder='User Name'/>
         <Input name='email' placeholder='email' />
         <Input name='password' type="password" placeholder='password'/>
