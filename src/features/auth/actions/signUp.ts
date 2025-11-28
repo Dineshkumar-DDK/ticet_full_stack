@@ -1,7 +1,7 @@
 'use server'
 
 
-import { formErrorToActionState, toActionState } from '@/components/form/utils/toActionState';
+import { ActionState, formErrorToActionState, toActionState } from '@/components/form/utils/toActionState';
 //validation of formData ...
 //2
 
@@ -26,7 +26,7 @@ const signUpSchema = z.object({
 })
 
 //1
-export const signUp = async (formData: FormData) => {
+export const signUp = async (_actionState:ActionState,formData: FormData) => {
     try {
         const { username, email, password } = signUpSchema.parse(
             Object.fromEntries(formData)
