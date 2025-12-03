@@ -63,5 +63,5 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
         return formErrorToActionState(error, formData);
     }
     redirect(ticketsPath());
-    // return toActionState("SUCCESS", "sign up successful")
+    return toActionState("SUCCESS", "sign up successful",formData)
 }

@@ -23,11 +23,11 @@ export const signIn = async (_actionState: ActionState, formData: FormData) => {
             where: { email }
         })
         if (!user) {
-            return toActionState("ERROR", "Incorrect email or password");
+            return toActionState("ERROR", "Incorrect email or password",formData);
         }
         const validPassword = await verify(user.passwordHash, password);
         if (!validPassword) {
-            return toActionState("ERROR", "Incorrect email or password");
+            return toActionState("ERROR", "Incorrect email or password",formData);
         }
         const session = await lucia.createSession(user.id, {});
         const cookieSession = lucia.createSessionCookie(session.id);
@@ -39,7 +39,7 @@ export const signIn = async (_actionState: ActionState, formData: FormData) => {
             cookieSession.attributes
         )
     } catch (error) {
-        return formErrorToActionState(error)
+        return formErrorToActionState(error,formData)
     }
 
     redirect(ticketsPath())
