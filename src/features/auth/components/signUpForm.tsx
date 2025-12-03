@@ -11,13 +11,13 @@ const SignUpForm = () => {
   const [actionState,action] = useActionState(signUp,EMPTY_ACTION_STATE)
   return (
     <Form action={action} actionState={actionState}>
-        <Input name='username' placeholder='User Name'/>
+        <Input name='username' placeholder='User Name'  defaultValue={actionState?.payload?.get("username") as string}/>
         <FieldError actionState={actionState} name='username'/>
-        <Input name='email' placeholder='email' />
+        <Input name='email' placeholder='email'  defaultValue={actionState?.payload?.get("email") as string}/>
         <FieldError actionState={actionState} name='email'/>
-        <Input name='password' type="password" placeholder='password'/>
+        <Input name='password' type="password" placeholder='password'  defaultValue={actionState?.payload?.get("password") as string}/>
         <FieldError actionState={actionState} name='password'/>
-        <Input name='confirmPassword' type='password' placeholder='confirm password' />
+        <Input name='confirmPassword' type='password' placeholder='confirm password'  defaultValue={actionState?.payload?.get("confirmPassword") as string}/>
         <FieldError actionState={actionState} name='confirmPassword'/>
         <SubmitButton label='Sign Up' />
     </Form>

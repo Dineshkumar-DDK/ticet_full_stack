@@ -11,9 +11,9 @@ const SignInForm = () => {
   const [actionState,action] = useActionState(signIn,EMPTY_ACTION_STATE)
   return (
     <Form action={action} actionState={actionState}>
-        <Input name='email' placeholder='email' />
+        <Input name='email' placeholder='email' defaultValue={actionState?.payload?.get("email") as string} />
         <FieldError actionState={actionState} name='email'/>
-        <Input name='password' type="password" placeholder='password'/>
+        <Input name='password' type="password" placeholder='password' defaultValue={actionState?.payload?.get("password") as string}/>
         <FieldError actionState={actionState} name='password'/>
         <SubmitButton label='Sign In' />
     </Form>
