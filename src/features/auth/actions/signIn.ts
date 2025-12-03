@@ -1,3 +1,4 @@
+'use server';
 import { ticketsPath } from "@/app/paths";
 import { formErrorToActionState, ActionState, toActionState } from "@/components/form/utils/toActionState"
 import { prisma } from "@/lib/prisma";

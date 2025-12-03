@@ -11,8 +11,8 @@ const SignUpForm = () => {
   const [actionState,action] = useActionState(signUp,EMPTY_ACTION_STATE)
   return (
     <Form action={action} actionState={actionState}>
-        <Input name='userName' placeholder='User Name'/>
-        <FieldError actionState={actionState} name='userName'/>
+        <Input name='username' placeholder='User Name'/>
+        <FieldError actionState={actionState} name='username'/>
         <Input name='email' placeholder='email' />
         <FieldError actionState={actionState} name='email'/>
         <Input name='password' type="password" placeholder='password'/>

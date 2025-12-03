@@ -14,7 +14,6 @@ import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu"
 import { TICKET_STATUS_LABELS } from "../constants"
 import { updateTicket } from "../actions/updateTicket"
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { deleteTicket } from "../actions/deleteTicket";
 import {useConfirmationDialogue} from "./confirmationDialog";
 type ticketMoreMenuProps = {

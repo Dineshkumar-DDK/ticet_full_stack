@@ -4,11 +4,9 @@ import Link from "next/link";
 import * as Paths from "@/app/paths";
 import { TICKET_ICONS } from "../constants";
 import { Button } from "@/components/ui/button";
-import { LucideMoreVertical, LucidePencil, LucideSquareArrowOutUpRight, LucideTrash } from "lucide-react";
+import { LucideMoreVertical, LucidePencil, LucideSquareArrowOutUpRight } from "lucide-react";
 import clsx from "clsx";
 import { Ticket } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
-import { deleteTicket } from "../actions/deleteTicket";
 import { toRupeeFromPaise } from "@/utils/currency";
 import TicketMoreMenu from "./ticketMoreMenu";
 

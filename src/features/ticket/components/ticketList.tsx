@@ -1,4 +1,3 @@
-import { Heading } from "@/components/heading"
 import { getTickets } from "../queries/get-tickets"
 import { TicketItem } from "./ticketItem"
 
