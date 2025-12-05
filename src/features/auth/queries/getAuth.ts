@@ -2,7 +2,7 @@ import { lucia } from "@/lib/lucia";
 import { cookies } from "next/headers";
 import {cache} from 'react'
 
-const getAuth = cache (async ()=>{
+export const getAuth = cache (async ()=>{
     //1 - get session if exists
     const cookieStore = await cookies();
     const sessionId = cookieStore.get(lucia.sessionCookieName)?.value ?? null;

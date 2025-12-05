@@ -5,7 +5,8 @@ import { useFormStatus } from 'react-dom'
 import { Button } from '@/components/ui/button'
 
 type SubmitButtonProps = {
-    label: string
+    label: string,
+
 }
 const SubmitButton = ({label}: SubmitButtonProps) => {
     const { pending } = useFormStatus()
