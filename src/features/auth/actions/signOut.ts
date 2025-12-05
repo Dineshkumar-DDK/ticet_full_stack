@@ -1,3 +1,4 @@
+'use server';
 import { lucia } from "@/lib/lucia"
 import { redirect } from "next/navigation"
 import * as path from '@/app/paths'

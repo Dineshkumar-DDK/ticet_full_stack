@@ -20,7 +20,7 @@ const Header = () => {
             Sign up
         </Link>
         <form action={signOut}>
-        <SubmitButton  label="Sign out" icon={LucideLogOut}/>
+        <SubmitButton  label="Sign out" icon={<LucideLogOut/>}/>
         </form>
 
     </>
