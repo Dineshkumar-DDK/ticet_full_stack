@@ -42,7 +42,7 @@ export const formErrorToActionState = (error: unknown, formData?: FormData): Act
     timestamp: Date.now()
   }
 }
-export const toActionState = (status: ActionState['status'], message: string,formData:FormData): ActionState => {
+export const toActionState = (status: ActionState['status'], message: string,formData?:FormData): ActionState => {
   return {
     message,
     status,

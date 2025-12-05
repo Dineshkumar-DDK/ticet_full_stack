@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { LucideLoaderCircle } from "lucide-react";
+import { LucideAArrowUp, LucideLoaderCircle } from "lucide-react";
 import { cloneElement } from "react";
 import { useFormStatus } from "react-dom";
 import { Button } from "../ui/button";
@@ -26,7 +26,7 @@ const SubmitButton = ({
   size = "default",
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
-
+  const clonedIcon = cloneElement(icon || <LucideAArrowUp/>,{className:"w-4 h-4"})
   return (
     <Button disabled={pending} type="submit" variant={variant} size={size}>
       {pending && (
@@ -43,9 +43,7 @@ const SubmitButton = ({
             "ml-2": !!label,
           })}
         >
-          {cloneElement(icon, {
-            className: "w-4 h-4",
-          })}
+          {clonedIcon}
         </span>
       ) : null}
     </Button>
