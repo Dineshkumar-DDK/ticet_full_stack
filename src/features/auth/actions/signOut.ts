@@ -3,7 +3,7 @@ import { lucia } from "@/lib/lucia"
 import { redirect } from "next/navigation"
 import * as path from '@/app/paths'
 import { cookies } from "next/headers"
-import { getAuth } from "../queries/getAuth"
+import { getAuth } from "./getAuth"
 
 
 export const signOut = async () => {

@@ -1,3 +1,4 @@
+'use client'
 import { LucideKanban, LucideLogOut } from "lucide-react"
 import Link from "next/link"
 import { buttonVariants } from "./ui/button"
@@ -5,12 +6,21 @@ import * as Paths from "@/app/paths"
 import { ThemeSwitcher } from "./theme/theme-switcher"
 import SubmitButton from "./form/submitButton"
 import { signOut } from "@/features/auth/actions/signOut"
-import { getAuth } from "@/features/auth/queries/getAuth"
-const Header = async () => {
-    const { user } = await getAuth()
-    console.log(user, "checking the user... latest")
+import { getAuth } from "@/features/auth/actions/getAuth"
+import { useState,useEffect } from "react";
+import {User as AuthUser} from 'lucia'
+const Header =  () => {
+    const [fetchedUser,setFetchedUser] = useState<AuthUser|null>(null);
+    useEffect(()=>{
+        fetchUser();
+        async function fetchUser(){
+            const {user} = await getAuth();
+            setFetchedUser(user)
+        }
+    },[])
+    
     const navItems = <>
-        {user ?
+        {fetchedUser ?
             <>
                 <Link href={Paths.ticketsPath()} className={buttonVariants({ variant: "default" })}><LucideKanban />Tickets</Link>
                 <form action={signOut}>
