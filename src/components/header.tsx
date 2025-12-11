@@ -5,23 +5,30 @@ import * as Paths from "@/app/paths"
 import { ThemeSwitcher } from "./theme/theme-switcher"
 import SubmitButton from "./form/submitButton"
 import { signOut } from "@/features/auth/actions/signOut"
-const Header = () => {
+import { getAuth } from "@/features/auth/queries/getAuth"
+const Header = async () => {
+    const { user } = await getAuth()
+    console.log(user, "checking the user... latest")
     const navItems = <>
-        <Link href={Paths.ticketsPath()} className={buttonVariants({ variant: "default" })}><LucideKanban />Tickets</Link>
-        <Link href={Paths.signIn()}
-            className={buttonVariants({ variant: 'outline' })}
-        >
-            Sign in
-        </Link>
-        <Link href={Paths.signUp()}
-            className={buttonVariants({ variant: 'outline' })}
-        >
-
-            Sign up
-        </Link>
-        <form action={signOut}>
-        <SubmitButton  label="Sign out" icon={<LucideLogOut/>}/>
-        </form>
+        {user ?
+            <>
+                <Link href={Paths.ticketsPath()} className={buttonVariants({ variant: "default" })}><LucideKanban />Tickets</Link>
+                <form action={signOut}>
+                    <SubmitButton label="Sign out" icon={<LucideLogOut />} />
+                </form>
+            </>
+            : <>
+                <Link href={Paths.signIn()}
+                    className={buttonVariants({ variant: 'default' })}
+                >
+                    Sign in
+                </Link>
+                <Link href={Paths.signUp()}
+                    className={buttonVariants({ variant: 'outline' })}
+                >
+                    Sign up
+                </Link>
+            </>}
 
     </>
     return <nav
