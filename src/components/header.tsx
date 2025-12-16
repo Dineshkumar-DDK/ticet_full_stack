@@ -7,18 +7,28 @@ import { ThemeSwitcher } from "./theme/theme-switcher"
 import SubmitButton from "./form/submitButton"
 import { signOut } from "@/features/auth/actions/signOut"
 import { getAuth } from "@/features/auth/actions/getAuth"
-import { useState,useEffect } from "react";
-import {User as AuthUser} from 'lucia'
-const Header =  () => {
-    const [fetchedUser,setFetchedUser] = useState<AuthUser|null>(null);
-    useEffect(()=>{
+import { useState, useEffect } from "react";
+import { User as AuthUser } from 'lucia'
+import * as path from '../app/paths'
+import { usePathname } from "next/navigation"
+const Header = () => {
+    const [fetchedUser, setFetchedUser] = useState<AuthUser | null>(null);
+    const [isFetched,setIsFetched]=useState<boolean>(false);
+    const pathName = usePathname();
+    useEffect(() => {
         fetchUser();
-        async function fetchUser(){
-            const {user} = await getAuth();
+        async function fetchUser() {
+            const { user } = await getAuth();
             setFetchedUser(user)
+            setIsFetched(true);
         }
-    },[])
-    
+    }, [pathName])
+
+
+    if(!isFetched){
+        return null;
+    }
+
     const navItems = <>
         {fetchedUser ?
             <>
@@ -43,6 +53,7 @@ const Header =  () => {
     </>
     return <nav
         className='
+        animate-header-from-top
         flex justify-between
         py-2.5 px-5 w-full
         fixed top-0 left-0 right-0 z-20
@@ -50,7 +61,13 @@ const Header =  () => {
         supports-backdrop-blur:bg-background/60
         '>
         <div className="flex items-center space-x-2">
-
+            <Link
+                href={path.homePath()}
+                className={buttonVariants({ variant: "ghost" })}
+            >
+                <LucideKanban />
+                <h1 className="text-lg font-semibold">TicketBounty</h1>
+            </Link>
         </div>
         <div className="flex items-center space-x-2">
             <ThemeSwitcher />
