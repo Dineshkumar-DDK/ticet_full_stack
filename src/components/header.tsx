@@ -6,29 +6,13 @@ import * as Paths from "@/app/paths"
 import { ThemeSwitcher } from "./theme/theme-switcher"
 import SubmitButton from "./form/submitButton"
 import { signOut } from "@/features/auth/actions/signOut"
-import { getAuth } from "@/features/auth/actions/getAuth"
-import { useState, useEffect } from "react";
-import { User as AuthUser } from 'lucia'
 import * as path from '../app/paths'
-import { usePathname } from "next/navigation"
+import { useAuth } from "@/features/auth/hooks/useAuth"
 const Header = () => {
-    const [fetchedUser, setFetchedUser] = useState<AuthUser | null>(null);
-    const [isFetched,setIsFetched]=useState<boolean>(false);
-    const pathName = usePathname();
-    useEffect(() => {
-        fetchUser();
-        async function fetchUser() {
-            const { user } = await getAuth();
-            setFetchedUser(user)
-            setIsFetched(true);
-        }
-    }, [pathName])
-
-
+    const {fetchedUser,isFetched}=useAuth();
     if(!isFetched){
         return null;
     }
-
     const navItems = <>
         {fetchedUser ?
             <>
