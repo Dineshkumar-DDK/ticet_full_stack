@@ -2,6 +2,7 @@
 import { setCookieByKey } from '@/action/cookieUtils'
 import * as Paths from '@/app/paths'
 import { ActionState, formErrorToActionState, toActionState } from '@/components/form/utils/toActionState'
+import { getAuth } from '@/features/auth/actions/getAuth'
 import { prisma } from '@/lib/prisma'
 import { toPaise } from '@/utils/currency'
 import { revalidatePath } from 'next/cache'
@@ -18,6 +19,13 @@ const upsertSchema = z.object(
 
 export const upsertTicket = async (id: string | undefined, _actionState: ActionState, formData: FormData) => {
     try {
+
+        const {user} = await getAuth();
+
+        if(!user){
+            redirect(Paths.signIn());
+        }
+
         const data = upsertSchema.parse({
             // id:formData.get('id') as string,
             title: formData.get('title'),
@@ -25,8 +33,11 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
             deadline: formData.get('deadline'),
             bounty: formData.get('bounty'),
         })
+
+    
         const dbData = {
             ...data,
+            userId:user.id,
             bounty:toPaise(data.bounty)
         }
         await prisma.ticket.upsert({
